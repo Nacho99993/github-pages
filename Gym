@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora 1RM - Gimnasio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 { text-align: center; }
+    label, input, button {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    input, button {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      margin-top: 1.5rem;
+    }
+    #resultado {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora de 1RM</h1>
+
+  <label for="peso">Peso levantado (kg):</label>
+  <input type="number" id="peso" placeholder="Ej: 100">
+
+  <label for="reps">Repeticiones realizadas:</label>
+  <input type="number" id="reps" placeholder="Ej: 5">
+
+  <button onclick="calcular1RM()">Calcular 1RM</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    function calcular1RM() {
+      const peso = parseFloat(document.getElementById('peso').value);
+      const reps = parseInt(document.getElementById('reps').value);
+      const resultado = document.getElementById('resultado');
+
+      if (isNaN(peso) || isNaN(reps) || peso <= 0 || reps <= 0) {
+        resultado.textContent = "Por favor, ingresá valores válidos.";
+        return;
+      }
+
+      const oneRM = peso * (1 + reps / 30);
+      resultado.textContent = `Tu 1RM estimado es: ${oneRM.toFixed(2)} kg`;
+    }
+  </script>
+
+</body>
+</html>
